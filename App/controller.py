@@ -68,6 +68,7 @@ def loadCategorias(catalog):
     for category in input_file:
         model.addCategoria(catalog, category)
    
+   
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
