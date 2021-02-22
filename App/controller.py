@@ -59,6 +59,7 @@ def loadVideos(catalog):
     for video in input_file:
         model.addVideo(catalog, video)
 
+
 def loadCategorias(catalog):
     """
     Carga todos los tags del archivo y los agrega a la lista de tags
@@ -66,7 +67,7 @@ def loadCategorias(catalog):
     Categoryfile = cf.data_dir + 'videos/category-id.csv'
     input_file = csv.DictReader(open(Categoryfile, encoding='utf-8'))
     for category in input_file:
-        model.addCategoria(catalog, category)
+        model.addCategoria(catalog, category, video)
    
    
 # Funciones de ordenamiento

@@ -52,43 +52,36 @@ def newCatalog():
 
     return catalog
 
+
 # Funciones para agregar informacion al catalogo
+
 
 def addVideo(catalog, video):
     # Se adiciona el video a la lista de videos
     lt.addLast(catalog['videos'], video)
-    # Se obtienen los autores del libro
-    categorias = video['categorias'].split(",")
-    # Cada autor, se crea en la lista de libros del catalogo, y se
-    # crea un libro en la lista de dicho autor (apuntador al libro)
-    for cat in categorias:
-        addCategoria(catalog, cat.strip(), video)
 
-def addCategoria(catalog, categoria, video):
-    """
-    Adiciona un categoria a lista de videos, la cual guarda referencias
-    a las categorias de dicha canción
-    """
-    categorias = catalog['categorias']
-    poscat = lt.isPresent(categorias, categoria)
-    if poscat > 0:
-        categoria = lt.getElement(categorias, poscat)
-    else:
-        categoria = newCategoria(categoria)
-        lt.addLast(categorias, categoria)
-    lt.addLast(categoria['videos'],video)
+def datosVideo(listaVideo:list)->dict:
+     var = addVideo(catalog,video)
+     while len(var) > 0:
+        
+        divdatos = var.split(",")
+        
+        datos = divdatos[0]
+       
+        if datos in videos:
+            videos[datos].append([{"video_id":int(divdatos[1]),"trending_date":int(divdatos[2]),"title":int(divdatos[3]),"channel_title":float(divdatos[4]),"category_id":int(divdatos[5]),"publish_time":int(divdatos[6]),"tags":int(divdatos[7]),"views":float(divdatos[8],"likes":int(divdatos[9]),"dislikes":int(divdatos[10]),"comment_count":int(divdatos[11]),"thumbnail_link":float(divdatos[12],"comments_disabled":int(divdatos[13]),"ratings_disabled":float(divdatos[14]"video_error_or_removed":int(divdatos[15]),"description":int(divdatos[16]),"country":int(divdatos[17])}]
+        else:
+            videos[datos]=[{"video_id":int(divdatos[1]),"trending_date":int(divdatos[2]),"title":int(divdatos[3]),"channel_title":float(divdatos[4]),"category_id":int(divdatos[5]),"publish_time":int(divdatos[6]),"tags":int(divdatos[7]),"views":float(divdatos[8],"likes":int(divdatos[9]),"dislikes":int(divdatos[10]),"comment_count":int(divdatos[11]),"thumbnail_link":float(divdatos[12],"comments_disabled":int(divdatos[13]),"ratings_disabled":float(divdatos[14]"video_error_or_removed":int(divdatos[15]),"description":int(divdatos[16]),"country":int(divdatos[17])}]
+
+    return videos
+
+def addCategoria(catalog, categoria):
+    # Se adiciona la categoria a la lista de categorias
+    lt.addLast(catalog['categorias'], categoria)
+
+
 
 # Funciones para creacion de datos
-
-def newCategoria(name):
-    """
-    Crea una nueva estructura para modelar los videos de
-    una categoria
-    """
-    categoria = {'name': "", "videos": None}
-    categoria['name'] = name
-    categoria['videos'] = lt.newList('ARRAY_LIST')
-    return categoria
 
 # Funciones de consulta
 

@@ -68,7 +68,7 @@ while True:
         catalog = initCatalog()
         loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
-        print('Categorias cargados: ' + str(lt.size(catalog['categorias'])))
+        print('Categorias cargadas: ' + str(lt.size(catalog['categorias'])))
     else:
         sys.exit(0)
 sys.exit(0)
