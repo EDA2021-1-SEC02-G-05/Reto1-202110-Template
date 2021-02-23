@@ -37,7 +37,7 @@ los mismos.
 
 # Construccion de modelos
 
-def newdicc():
+def newdicc(tipo:str):
     """
     Inicializa el catálogo de los videos. Crea una lista vacia para guardar
     todos los videos, adicionalmente, crea una lista vacia para las categorias ,
@@ -47,8 +47,8 @@ def newdicc():
                'categorias': None,
               }
 
-    dicci['videos'] = lt.newList()
-    dicci['categorias'] = lt.newList('SINGLE-LINKED')
+    dicci['videos'] = lt.newList(tipo)
+    dicci['categorias'] = lt.newList(tipo)
 
     return dicci
 
@@ -64,7 +64,7 @@ def addVideo(dicci, video):
 
 def addCategoria(dicci, categoria):
     # Se adiciona la categoria a la lista de categorias
-    lt.addLast(catalog['categorias'], categoria)
+    lt.addLast(dicci['categorias'], categoria)
 
 
 
