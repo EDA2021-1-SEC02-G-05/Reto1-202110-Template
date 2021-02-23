@@ -37,9 +37,10 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- Consultar los Top x videos por promedio")
+    print("2- Indicar el tipo de ordenamiento")
     print("3- Consultar los videos de un autor")
     print("4- Videos por categoria")
+    print(
     print("0- Salir")
 
 def initdicci(lista:str):
@@ -54,6 +55,14 @@ def loadData(dicci):
     Carga los libros en la estructura de datos
     """
     controller.loadData(dicci)
+
+def loadOrdenamientos(tipo):
+
+    return controller.loadOrdenamientos(tipo)
+
+
+
+
 
 dicci = None
 
@@ -70,6 +79,11 @@ while True:
         loadData(dicci)
         print('Videos cargados: ' + str(lt.size(dicci['videos'])))
         print('Categorias cargadas: ' + str(lt.size(dicci['categorias'])))
+    elif int(inputs[1]== 2):
+        
+        y = str(input("indique el tipo de ordenamiento que quiere utlizar: "))
+        ordenamiento = loadOrdenamientos(y)
+        loadOrdenamientos(ordenamiento)
     else:
         sys.exit(0)
 

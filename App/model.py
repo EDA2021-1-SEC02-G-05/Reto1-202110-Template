@@ -28,6 +28,8 @@
 import config as cf
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import selectionsort as sel
+from DISClib.Algorithms.Sorting import insertionsort as ins
 assert cf
 
 """
@@ -47,15 +49,13 @@ def newdicc(lista: str):
                'categorias': None,
               }
 
-    dicci['videos'] = lt.newList(lista)
+    dicci['videos'] = lt.newList(lista,cmpfunction=cmpVideosByViews)
     dicci['categorias'] = lt.newList(lista)
 
     return dicci
 
 
 # Funciones para agregar informacion al catalogo
-
-
 def addVideo(dicci, video):
     # Se adiciona el video a la lista de videos
     lt.addLast(dicci['videos'], video)
@@ -69,15 +69,36 @@ def addCategoria(dicci, categoria):
 
 
 
-
-
-
-
-
 # Funciones para creacion de datos
+
+
+def tamMuestra(lst,pos,numelem):
+
+    x = lt.sublist(lst,pos,numelem)
+    return x
+
+    
+        
 
 # Funciones de consulta
 
 # Funciones utilizadas para comparar elementos dentro de una lista
+   
+
+def cmpVideosByViews(video1, video2):
+
+    return (float(video1['views']) > float(video2['views']))
 
 # Funciones de ordenamiento
+
+def Ordenamientos(tipo):
+    if tipo == "shell":
+        x= sa.sort
+    elif tipo == "selection":
+        x= sel.sort
+    elif tipo == "insertion":
+        x = ins.sort
+    else:
+        print("Este tipo de ordenamiento no existe")
+    return x
+
