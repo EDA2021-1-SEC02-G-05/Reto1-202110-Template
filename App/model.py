@@ -26,6 +26,7 @@
 
 
 import config as cf
+import time
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Sorting import selectionsort as sel
@@ -72,11 +73,6 @@ def addCategoria(dicci, categoria):
 # Funciones para creacion de datos
 
 
-def tamMuestra(lst,pos,numelem):
-
-    x = lt.sublist(lst,pos,numelem)
-    return x
-
     
         
 
@@ -91,6 +87,14 @@ def cmpVideosByViews(video1, video2):
 
 # Funciones de ordenamiento
 
+
+def tamMuestra(dicci,size):
+
+    sub_list= lt.sublist(dicci["videos"],0,size)
+    sub_list = sub_list.copy()
+
+    return sub_list
+
 def Ordenamientos(tipo):
     if tipo == "shell":
         x= sa.sort
@@ -100,5 +104,12 @@ def Ordenamientos(tipo):
         x = ins.sort
     else:
         print("Este tipo de ordenamiento no existe")
-    return x
+    
+    start_time = time.process_time()
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return x, elapsed_time_mseg
+
+   
+  
 

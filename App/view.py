@@ -40,7 +40,6 @@ def printMenu():
     print("2- Indicar el tipo de ordenamiento")
     print("3- Consultar los videos de un autor")
     print("4- Videos por categoria")
-    print(
     print("0- Salir")
 
 def initdicci(lista:str):
@@ -79,11 +78,13 @@ while True:
         loadData(dicci)
         print('Videos cargados: ' + str(lt.size(dicci['videos'])))
         print('Categorias cargadas: ' + str(lt.size(dicci['categorias'])))
-    elif int(inputs[1]== 2):
+    elif int(inputs[0]) == 2:
         
-        y = str(input("indique el tipo de ordenamiento que quiere utlizar: "))
-        ordenamiento = loadOrdenamientos(y)
-        loadOrdenamientos(ordenamiento)
+        ordenamiento = str(input("indique el tipo de ordenamiento que quiere utlizar: "))
+        resultado = controller.loadOrdenamientos(str(ordenamiento))
+        print("Para el ordenamiento", ordenamiento, ", el tiempo (mseg) es: ",
+                                          str(resultado[1]))
+       
     else:
         sys.exit(0)
 
