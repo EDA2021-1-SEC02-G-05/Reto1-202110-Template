@@ -55,12 +55,9 @@ def loadData(dicci):
     """
     controller.loadData(dicci)
 
-def loadOrdenamientos(tipo):
+def loadOrdenamientos(tipo,dicci,size):
 
-    return controller.loadOrdenamientos(tipo)
-
-
-
+    return controller.loadOrdenamientos(tipo,dicci,size)
 
 
 dicci = None

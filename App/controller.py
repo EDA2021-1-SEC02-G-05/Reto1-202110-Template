@@ -72,8 +72,8 @@ def loadCategorias(dicci):
    
 # Funciones de ordenamiento
 
-def loadOrdenamientos(tipo):
-    rta = model.Ordenamientos(tipo)
+def loadOrdenamientos(tipo,dicci,size):
+    rta = model.Ordenamientos(tipo,dicci,size)
     return rta
 
 # Funciones de consulta sobre el catálogo

@@ -88,20 +88,17 @@ def cmpVideosByViews(video1, video2):
 # Funciones de ordenamiento
 
 
-def tamMuestra(dicci,size):
+def Ordenamientos(tipo,dicci,size):
 
     sub_list= lt.sublist(dicci["videos"],0,size)
     sub_list = sub_list.copy()
 
-    return sub_list
-
-def Ordenamientos(tipo):
     if tipo == "shell":
-        x= sa.sort
+        x = sa.sort(sub_list,cmpVideosByViews)
     elif tipo == "selection":
-        x= sel.sort
+        x = sel.sort(sub_list,cmpVideosByViews)
     elif tipo == "insertion":
-        x = ins.sort
+        x = ins.sort(sub_list,cmpVideosByViews)
     else:
         print("Este tipo de ordenamiento no existe")
     
