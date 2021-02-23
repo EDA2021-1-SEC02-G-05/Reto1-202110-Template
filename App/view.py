@@ -42,20 +42,20 @@ def printMenu():
     print("4- Videos por categoria")
     print("0- Salir")
 
-def initCatalog():
+def initdicci():
     """
     Inicializa el catalogo de libros
     """
-    return controller.initCatalog()
+    return controller.initdicci()
 
 
-def loadData(catalog):
+def loadData(dicci):
     """
     Carga los libros en la estructura de datos
     """
-    controller.loadData(catalog)
+    controller.loadData(dicci)
 
-catalog = None
+dicci = None
 
 """
 Menu principal
@@ -65,10 +65,10 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
-        catalog = initCatalog()
-        loadData(catalog)
-        print('Videos cargados: ' + str(lt.size(catalog['videos'])))
-        print('Categorias cargadas: ' + str(lt.size(catalog['categorias'])))
+        dicci = initdicci()
+        loadData(dicci)
+        print('Videos cargados: ' + str(lt.size(dicci['videos'])))
+        print('Categorias cargadas: ' + str(lt.size(dicci['categorias'])))
     else:
         sys.exit(0)
 sys.exit(0)

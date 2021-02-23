@@ -37,47 +37,40 @@ los mismos.
 
 # Construccion de modelos
 
-def newCatalog():
+def newdicc():
     """
     Inicializa el catálogo de los videos. Crea una lista vacia para guardar
     todos los videos, adicionalmente, crea una lista vacia para las categorias ,
     Retorna el catalogo inicializado.
     """
-    catalog = {'videos': None,
+    dicci = {'videos': None,
                'categorias': None,
               }
 
-    catalog['videos'] = lt.newList()
-    catalog['categorias'] = lt.newList('SINGLE-LINKED')
+    dicci['videos'] = lt.newList()
+    dicci['categorias'] = lt.newList('SINGLE-LINKED')
 
-    return catalog
+    return dicci
 
 
 # Funciones para agregar informacion al catalogo
 
 
-def addVideo(catalog, video):
+def addVideo(dicci, video):
     # Se adiciona el video a la lista de videos
-    lt.addLast(catalog['videos'], video)
+    lt.addLast(dicci['videos'], video)
 
-def datosVideo(listaVideo:list)->dict:
-     var = addVideo(catalog,video)
-     while len(var) > 0:
-        
-        divdatos = var.split(",")
-        
-        datos = divdatos[0]
-       
-        if datos in videos:
-            videos[datos].append([{"video_id":int(divdatos[1]),"trending_date":int(divdatos[2]),"title":int(divdatos[3]),"channel_title":float(divdatos[4]),"category_id":int(divdatos[5]),"publish_time":int(divdatos[6]),"tags":int(divdatos[7]),"views":float(divdatos[8],"likes":int(divdatos[9]),"dislikes":int(divdatos[10]),"comment_count":int(divdatos[11]),"thumbnail_link":float(divdatos[12],"comments_disabled":int(divdatos[13]),"ratings_disabled":float(divdatos[14]"video_error_or_removed":int(divdatos[15]),"description":int(divdatos[16]),"country":int(divdatos[17])}]
-        else:
-            videos[datos]=[{"video_id":int(divdatos[1]),"trending_date":int(divdatos[2]),"title":int(divdatos[3]),"channel_title":float(divdatos[4]),"category_id":int(divdatos[5]),"publish_time":int(divdatos[6]),"tags":int(divdatos[7]),"views":float(divdatos[8],"likes":int(divdatos[9]),"dislikes":int(divdatos[10]),"comment_count":int(divdatos[11]),"thumbnail_link":float(divdatos[12],"comments_disabled":int(divdatos[13]),"ratings_disabled":float(divdatos[14]"video_error_or_removed":int(divdatos[15]),"description":int(divdatos[16]),"country":int(divdatos[17])}]
 
-    return videos
 
-def addCategoria(catalog, categoria):
+def addCategoria(dicci, categoria):
     # Se adiciona la categoria a la lista de categorias
     lt.addLast(catalog['categorias'], categoria)
+
+
+
+
+
+
 
 
 
