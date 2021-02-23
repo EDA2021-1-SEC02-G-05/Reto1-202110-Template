@@ -31,11 +31,11 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 # Inicialización del Catálogo de videos
 
-def initdicci():
+def initdicci(lista):
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
-    dicci = model.newdicc()
+    dicci = model.newdicc(lista)
     return dicci
 
 # Funciones para la carga de datos

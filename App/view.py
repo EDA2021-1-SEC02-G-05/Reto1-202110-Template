@@ -42,11 +42,11 @@ def printMenu():
     print("4- Videos por categoria")
     print("0- Salir")
 
-def initdicci():
+def initdicci(lista:str):
     """
     Inicializa el catalogo de libros
     """
-    return controller.initdicci()
+    return controller.initdicci(lista)
 
 
 def loadData(dicci):
@@ -65,10 +65,13 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
-        dicci = initdicci()
+        x = str(input("Indique el tipo de lista que quiere: "))
+        dicci = initdicci(x)
         loadData(dicci)
         print('Videos cargados: ' + str(lt.size(dicci['videos'])))
         print('Categorias cargadas: ' + str(lt.size(dicci['categorias'])))
     else:
         sys.exit(0)
+
+    
 sys.exit(0)
