@@ -49,9 +49,12 @@ def newdicc(lista: str):
     dicci = {'videos': None,
                'categorias': None,
               }
+    if lista == "SINGLE_LINKED" or lista == "ARRAY_LIST":
+        dicci['videos'] = lt.newList(lista,cmpfunction=cmpVideosByViews)
+        dicci['categorias'] = lt.newList(lista)
+    else:
+        print("Esta tipo de lista no existe")
 
-    dicci['videos'] = lt.newList(lista,cmpfunction=cmpVideosByViews)
-    dicci['categorias'] = lt.newList(lista)
 
     return dicci
 
@@ -90,7 +93,8 @@ def cmpVideosByViews(video1, video2):
 
 def Ordenamientos(tipo,dicci,size):
 
-    sub_list= lt.sublist(dicci["videos"],0,size)
+    start_time = time.process_time()
+    sub_list= lt.subList(dicci["videos"],0,size)
     sub_list = sub_list.copy()
 
     if tipo == "shell":
@@ -102,7 +106,7 @@ def Ordenamientos(tipo,dicci,size):
     else:
         print("Este tipo de ordenamiento no existe")
     
-    start_time = time.process_time()
+  
     stop_time = time.process_time()
     elapsed_time_mseg = (stop_time - start_time)*1000
     return x, elapsed_time_mseg
