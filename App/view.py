@@ -77,7 +77,7 @@ while True:
         print('Categorias cargadas: ' + str(lt.size(dicci['categorias'])))
     elif int(inputs[0]) == 2:
         
-        ordenamiento = str(input("Indique el tipo de ordenamiento que quiere utilizar: "))
+        ordenamiento = str(input("Indique el tipo de ordenamiento que quiere utilizar(shell,selection,insertion): "))
         size = int(input("Indique el tamaño de la muestra: "))
         resultado = controller.loadOrdenamientos(str(ordenamiento),dicci,size)
         print("Para el ordenamiento" + str(ordenamiento)+ ", el tiempo (mseg) es: "+ str(resultado[1]))

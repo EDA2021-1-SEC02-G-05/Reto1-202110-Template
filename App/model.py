@@ -49,7 +49,7 @@ def newdicc(lista: str):
     dicci = {'videos': None,
                'categorias': None,
               }
-    if lista == "SINGLE_LINKED" or lista == "ARRAY_LIST":
+    if lista == "LINKED_LIST" or lista == "ARRAY_LIST":
         dicci['videos'] = lt.newList(lista,cmpfunction=cmpVideosByViews)
         dicci['categorias'] = lt.newList(lista)
     else:
