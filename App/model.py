@@ -106,7 +106,6 @@ def Ordenamientos(tipo,dicci,size):
     else:
         print("Este tipo de ordenamiento no existe")
     
-  
     stop_time = time.process_time()
     elapsed_time_mseg = (stop_time - start_time)*1000
     return x, elapsed_time_mseg
