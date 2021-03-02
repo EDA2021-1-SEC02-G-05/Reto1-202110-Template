@@ -25,6 +25,10 @@ import sys
 import controller
 from DISClib.ADT import list as lt
 assert cf
+import sys
+
+default_limit = 1000
+sys.setrecursionlimit(default_limit*10) 
 
 
 """
@@ -77,7 +81,7 @@ while True:
         print('Categorias cargadas: ' + str(lt.size(dicci['categorias'])))
     elif int(inputs[0]) == 2:
         
-        ordenamiento = str(input("Indique el tipo de ordenamiento que quiere utilizar(shell,selection,insertion): "))
+        ordenamiento = str(input("Indique el tipo de ordenamiento que quiere utilizar(merge,quick,shell,selection,insertion): "))
         size = int(input("Indique el tamaño de la muestra: "))
         resultado = controller.loadOrdenamientos(str(ordenamiento),dicci,size)
         print("Para el ordenamiento" + str(ordenamiento)+ ", el tiempo (mseg) es: "+ str(resultado[1]))
@@ -86,3 +90,4 @@ while True:
         sys.exit(0)
 
 sys.exit(0)
+

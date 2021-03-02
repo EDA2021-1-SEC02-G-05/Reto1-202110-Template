@@ -54,7 +54,7 @@ def loadVideos(dicci):
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    videofile = cf.data_dir + 'videos-large.csv'
+    videofile = cf.data_dir + 'videos-30pct.csv'
     input_file = csv.DictReader(open(videofile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(dicci, video)

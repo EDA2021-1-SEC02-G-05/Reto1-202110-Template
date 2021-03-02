@@ -31,6 +31,8 @@ from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Sorting import selectionsort as sel
 from DISClib.Algorithms.Sorting import insertionsort as ins
+from DISClib.Algorithms.Sorting import mergesort as mg
+from DISClib.Algorithms.Sorting import quicksort as qk
 assert cf
 
 """
@@ -103,6 +105,10 @@ def Ordenamientos(tipo,dicci,size):
         x = sel.sort(sub_list,cmpVideosByViews)
     elif tipo == "insertion":
         x = ins.sort(sub_list,cmpVideosByViews)
+    elif tipo == "quick":
+        x = qk.sort(sub_list,cmpVideosByViews)
+    elif tipo == "merge":
+        x = mg.sort(sub_list,cmpVideosByViews)
     else:
         print("Este tipo de ordenamiento no existe")
     
