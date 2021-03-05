@@ -26,8 +26,13 @@
 
 
 import config as cf
+import time
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import selectionsort as sel
+from DISClib.Algorithms.Sorting import insertionsort as ins
+from DISClib.Algorithms.Sorting import mergesort as mg
+from DISClib.Algorithms.Sorting import quicksort as qk
 assert cf
 
 """
@@ -37,26 +42,30 @@ los mismos.
 
 # Construccion de modelos
 
-def newdicc(tip:str):
+
+def newdicc(lista: str):
     """
     Inicializa el catálogo de los videos. Crea una lista vacia para guardar
     todos los videos, adicionalmente, crea una lista vacia para las categorias ,
     Retorna el catalogo inicializado.
     """
-    
     dicci = {'videos': None,
-                 'categorias': None
-            }
+                'categorias': None,
+                    "pais":None,
+                    }
+    if lista == "LINKED_LIST" or lista == "ARRAY_LIST":
+        dicci['videos'] = lt.newList(lista,cmpfunction=cmpVideosByViews)
+        dicci['categorias'] = lt.newList(lista)
+        dicci["pais"]={}
+        
+    else:
+        print("Esta tipo de lista no existe")
 
-    dicci['videos'] = lt.newList(tip)
-    dicci['categorias'] = lt.newList(tip)
-    
+
     return dicci
 
 
 # Funciones para agregar informacion al catalogo
-
-
 def addVideo(dicci, video):
     # Se adiciona el video a la lista de videos
     lt.addLast(dicci['videos'], video)
@@ -70,15 +79,47 @@ def addCategoria(dicci, categoria):
 
 
 
-
-
-
-
-
 # Funciones para creacion de datos
+
+
+    
+        
 
 # Funciones de consulta
 
 # Funciones utilizadas para comparar elementos dentro de una lista
+   
+
+def cmpVideosByViews(video1, video2):
+
+    return (float(video1['views']) > float(video2['views']))
 
 # Funciones de ordenamiento
+
+
+def Ordenamientos(tipo,dicci,size):
+
+    start_time = time.process_time()
+    sub_list= lt.subList(dicci["videos"],0,size)
+    sub_list = sub_list.copy()
+
+    if tipo == "shell":
+        x = sa.sort(sub_list,cmpVideosByViews)
+    elif tipo == "selection":
+        x = sel.sort(sub_list,cmpVideosByViews)
+    elif tipo == "insertion":
+        x = ins.sort(sub_list,cmpVideosByViews)
+    elif tipo == "quick":
+        x = qk.sort(sub_list,cmpVideosByViews)
+    elif tipo == "merge":
+        x = mg.sort(sub_list,cmpVideosByViews)
+    else:
+        print("Este tipo de ordenamiento no existe")
+    
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return x, elapsed_time_mseg
+
+   
+  
+

@@ -25,6 +25,10 @@ import sys
 import controller
 from DISClib.ADT import list as lt
 assert cf
+import sys
+
+default_limit = 1000
+sys.setrecursionlimit(default_limit*10) 
 
 
 """
@@ -37,23 +41,27 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- Consultar los Top x videos por promedio")
+    print("2- Indicar el tipo de ordenamiento")
     print("3- Consultar los videos de un autor")
     print("4- Videos por categoria")
     print("0- Salir")
 
-def initdicci(tip):
+def initdicci(lista:str):
     """
     Inicializa el catalogo de libros
     """
-    return controller.initdicci(tip)
-
+    return controller.initdicci(lista)
 
 def loadData(dicci):
     """
     Carga los libros en la estructura de datos
     """
     controller.loadData(dicci)
+
+def loadOrdenamientos(tipo,dicci,size):
+
+    return controller.loadOrdenamientos(tipo,dicci,size)
+
 
 dicci = None
 """
@@ -64,11 +72,21 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
-        x=str(input("Indique el tipo de representacion de la lista : "))
+
+        x = str(input("Indique el tipo de lista que quiere: "))
         dicci = initdicci(x)
         loadData(dicci)
         print('Videos cargados: ' + str(lt.size(dicci['videos'])))
         print('Categorias cargadas: ' + str(lt.size(dicci['categorias'])))
+    elif int(inputs[0]) == 2:
+        
+        ordenamiento = str(input("Indique el tipo de ordenamiento que quiere utilizar(merge,quick,shell,selection,insertion): "))
+        size = int(input("Indique el tamaño de la muestra: "))
+        resultado = controller.loadOrdenamientos(str(ordenamiento),dicci,size)
+        print("Para el ordenamiento" + str(ordenamiento)+ ", el tiempo (mseg) es: "+ str(resultado[1]))
+       
     else:
         sys.exit(0)
+
 sys.exit(0)
+

@@ -31,11 +31,11 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 # Inicialización del Catálogo de videos
 
-def initdicci(tip):
+def initdicci(lista):
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
-    dicci = model.newdicc(tip)
+    dicci = model.newdicc(lista)
     return dicci
 
 # Funciones para la carga de datos
@@ -54,7 +54,7 @@ def loadVideos(dicci):
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    videofile = cf.data_dir + 'videos-small.csv'
+    videofile = cf.data_dir + 'videos-30pct.csv'
     input_file = csv.DictReader(open(videofile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(dicci, video)
@@ -71,5 +71,9 @@ def loadCategorias(dicci):
    
    
 # Funciones de ordenamiento
+
+def loadOrdenamientos(tipo,dicci,size):
+    rta = model.Ordenamientos(tipo,dicci,size)
+    return rta
 
 # Funciones de consulta sobre el catálogo
