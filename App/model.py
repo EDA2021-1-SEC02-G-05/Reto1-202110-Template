@@ -49,11 +49,14 @@ def newdicc(lista: str):
     Retorna el catalogo inicializado.
     """
     dicci = {'videos': None,
-               'categorias': None,
-              }
+                'categorias': None,
+                    "pais":None,
+                    }
     if lista == "LINKED_LIST" or lista == "ARRAY_LIST":
         dicci['videos'] = lt.newList(lista,cmpfunction=cmpVideosByViews)
         dicci['categorias'] = lt.newList(lista)
+        dicci["pais"]={}
+        
     else:
         print("Esta tipo de lista no existe")
 
@@ -118,4 +121,67 @@ def Ordenamientos(tipo,dicci,size):
 
    
   
+def paises(dicci,ppais:str,categgoria:str,cantidad:int):
+    categorias={"Film & Animation":1,"Autos & Vehicles":2,"Music":10,"Pets & Animals":15,"Sports":17,"Short Movies":18,"Travel & Events":19,"Gaming":20,"Videoblogging":21,"People & Blogs":22,"Comedyy":23,"Entertainment":24,"News & Politics":25,"Howto & Style":26,"Education":27,"Science & Technology":28,"Non-profits & Activism":29,"Movies":30,"Anime/Animation":31,"Classics":33,"Comedy":34,"Documentary":35,"Drama":36,"Family":37,"Foreign":38,"Horror":39,"Sci-Fi/Fantasy":40,"Thriller":41,"Shorts":42,"Shows":43,"Trailers":44}
+    ct=categorias[categgoria]
+    lol=[]
+
+    for m in range(0,lt.size(dicci["videos"])):
+        rta=lt.getElement(dicci["videos"],m)
+    
+    
+    
+        if rta["country"] not in dicci["pais"]:
+            dicci["pais"][rta["country"]]=[]
+            dicci["pais"][rta["country"]].append(rta)
+
+        else:
+            dicci["pais"][rta["country"]].append(rta)
+
+
+    for tt in range(0,len(dicci["pais"][ppais])):
+
+        if (dicci["pais"][ppais][tt]["category_id"])== str(ct):
+
+            lol.append(dicci["pais"][ppais][tt])
+
+    h=[]
+    for k in lol:
+    
+         h.append(k["views"])
+
+    h=sorted(h,reverse=True)
+   
+
+
+    h=h[:cantidad]  
+
+    final=[]
+
+    for mi in lol:
+    
+        for oo in h:
+        
+             if mi["views"]==oo:
+                final.append((mi["trending_date"],mi["title"],mi["title"],mi["publish_time"],mi["views"],mi["likes"],mi["dislikes"]))
+
+    return final
+  
+
+
+
+
+def requerimiento3(dicci,cat:str):
+    categorias={"Film & Animation":1,"Autos & Vehicles":2,"Music":10,"Pets & Animals":15,"Sports":17,"Short Movies":18,"Travel & Events":19,"Gaming":20,"Videoblogging":21,"People & Blogs":22,"Comedyy":23,"Entertainment":24,"News & Politics":25,"Howto & Style":26,"Education":27,"Science & Technology":28,"Non-profits & Activism":29,"Movies":30,"Anime/Animation":31,"Classics":33,"Comedy":34,"Documentary":35,"Drama":36,"Family":37,"Foreign":38,"Horror":39,"Sci-Fi/Fantasy":40,"Thriller":41,"Shorts":42,"Shows":43,"Trailers":44}
+    ct=categorias[cat]
+    lili=lt.newList()
+
+    for m in range(0,lt.size(dicci["videos"])):
+        u=lt.getElement(dicci["videos"],m)
+
+        if u["category_id"] == str(cat):
+
+            
+
+
 
