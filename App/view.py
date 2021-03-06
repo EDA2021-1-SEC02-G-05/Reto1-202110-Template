@@ -52,7 +52,6 @@ def initdicci(lista:str):
     """
     return controller.initdicci(lista)
 
-
 def loadData(dicci):
     """
     Carga los libros en la estructura de datos
@@ -69,7 +68,6 @@ def loadpaises(dicci,ppais,categgoria,cantidad):
 
 
 dicci = None
-
 """
 Menu principal
 """
@@ -78,6 +76,7 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+
         x = str(input("Indique el tipo de lista que quiere: "))
         dicci = initdicci(x)
         loadData(dicci)

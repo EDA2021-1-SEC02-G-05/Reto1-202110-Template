@@ -42,6 +42,7 @@ los mismos.
 
 # Construccion de modelos
 
+
 def newdicc(lista: str):
     """
     Inicializa el catálogo de los videos. Crea una lista vacia para guardar
