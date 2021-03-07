@@ -43,7 +43,7 @@ def printMenu():
     print("1- Cargar información en el catálogo")
     print("2- Indicar el tipo de ordenamiento")
     print("3- Consultar los videos con mas views y  son tendencia")
-    print("4- Videos por categoria")
+    print("4- Consultar los trending videos por pais")
     print("0- Salir")
 
 def initdicci(lista:str):
@@ -65,6 +65,12 @@ def loadOrdenamientos(tipo,dicci,size):
 def loadpaises(dicci,ppais,categgoria,cantidad):
 
     return controller.loadppaises(dicci,ppais,categgoria,cantidad)
+
+
+
+def loadtrendingVideo(dicci,pais):
+
+    return controller.loadTrendingVideo(dicci,pais)
 
 
 dicci = None
@@ -111,6 +117,12 @@ while True:
         rt=loadpaises(dicci,ppais,categgoria,cantidad)
 
         print(rt)
+
+    elif  int(inputs[0]) == 4:
+        pais=str(input("Ingrese el nombre del pais deseado a buscar: "))
+        f=loadtrendingVideo(dicci,pais)
+
+        print(f)
 
 
 

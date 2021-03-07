@@ -54,7 +54,7 @@ def loadVideos(dicci):
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    videofile = cf.data_dir + 'videos-80pct.csv'
+    videofile = cf.data_dir + 'videos-10pct.csv'
     input_file = csv.DictReader(open(videofile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(dicci, video)
@@ -83,4 +83,10 @@ def loadppaises(dicci,ppais,categgoria,cantidad):
     rttaa = model.paises(dicci,ppais,categgoria,cantidad)
 
     return rttaa
+
+def loadTrendingVideo(dicci,pais):
+
+    ta=model.TrendingVideo(dicci,pais)
+
+    return ta
 
