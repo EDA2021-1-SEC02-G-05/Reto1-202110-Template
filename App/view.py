@@ -72,6 +72,12 @@ def loadtrendingVideo(dicci,pais):
 
     return controller.loadTrendingVideo(dicci,pais)
 
+def loadTrendingCategoria(dicci,categoria):
+
+    l = controller.loadTrendingCategoria(dicci,categoria)
+
+    return l
+
 
 dicci = None
 """
@@ -96,11 +102,8 @@ while True:
              for t  in i:
                  hol=str(i[t])
                  lista.append((hol[0:2],hol[4:]))
-        print(" Lista de categorias : "+ str(lista))   
+        print(" Lista de categorias : "+ str(lista))  
 
-
-
-   
     elif int(inputs[0]) == 2:   
         
         ordenamiento = str(input("Indique el tipo de ordenamiento que quiere utilizar(merge,quick,shell,selection,insertion): "))
@@ -123,9 +126,11 @@ while True:
         f=loadtrendingVideo(dicci,pais)
 
         print(f)
+    elif int(inputs[0]) == 5:
 
-
-
+        categoria = str(input("Ingrese el nombre de la categoria: "))
+        cat = loadTrendingCategoria(dicci,categoria)
+        print(cat)
     else:
         sys.exit(0)
 

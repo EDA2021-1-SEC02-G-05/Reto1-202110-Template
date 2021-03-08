@@ -90,3 +90,9 @@ def loadTrendingVideo(dicci,pais):
 
     return ta
 
+def loadTrendingCategoria(dicci,categoria):
+
+    l = model.TrendingCategoria(dicci,categoria)
+
+    return l
+

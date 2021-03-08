@@ -168,7 +168,7 @@ def paises(dicci,ppais:str,categgoria:str,cantidad:int):
 
     return final
   
-def TrendingVideo(dicci,pais):
+def TrendingVideo1(dicci,pais):
 
     for m in range(0,lt.size(dicci["videos"])):
         rta=lt.getElement(dicci["videos"],m)
@@ -191,38 +191,28 @@ def TrendingVideo(dicci,pais):
         lista.append(i["video_id"])
         co = lista.count(i["video_id"])
         lista2.append(co)
-    maxi = max(lista2)
+    copia = lista2.copy()
+    maxi = max(copia)
+
     tupla = (i["title"],i["channel_title"],i["country"],maxi)
 
     return tupla
        
 
 #opcion de la perra vela
-def TrendingVideo2(dicci,pais:str):
+def TrendingVideo(dicci,pais:str):
 
-    rta=dicci["pais"][pais]
+    rta=dicci["pais"].get(pais)
     mm=[]
     for i in rta:
-    
-    
          mm.append((i["title"]))
-
-
-
     f=0
-   
     pi=None
-
-    for ss in mm:
-
-   
-    
+    for ss in mm:    
         if mm.count(ss)>f and ss !=pi :
         
             f= mm.count(ss)
             pi=ss
-
-
     for oo in dicci['pais'][pais]:
 
         if oo['title']==pi:
@@ -233,39 +223,37 @@ def TrendingVideo2(dicci,pais:str):
     return pt
 
 
-def TrendingCategoria(dicci,categoria):
-
-    for m in range(0,lt.size(dicci["videos"])):
-        resp=lt.getElement(dicci["videos"],m)
-
-    for m in range(0,lt.size(dicci["categorias"])):
-        rta=lt.getElement(dicci["categorias"],m)
-    
-
-        if rta["id"] not in dicci["categorias"]:
-            if rta["id"] == resp["category_id"]:
-                dicci["categorias"][rta["id"]]=[]
-                dicci["categorias"][rta["id"]].append(rta)
-
-        else:
-            dicci["categorias"][rta["id"]].append(rta)
-
-
-def requerimiento3(dicci,cat:str):
+def TrendingCategoria(dicci,cat:str):
     categorias={"Film & Animation":1,"Autos & Vehicles":2,"Music":10,"Pets & Animals":15,"Sports":17,"Short Movies":18,"Travel & Events":19,"Gaming":20,"Videoblogging":21,"People & Blogs":22,"Comedyy":23,"Entertainment":24,"News & Politics":25,"Howto & Style":26,"Education":27,"Science & Technology":28,"Non-profits & Activism":29,"Movies":30,"Anime/Animation":31,"Classics":33,"Comedy":34,"Documentary":35,"Drama":36,"Family":37,"Foreign":38,"Horror":39,"Sci-Fi/Fantasy":40,"Thriller":41,"Shorts":42,"Shows":43,"Trailers":44}
     ct=categorias[cat]
     
     for m in range(0,lt.size(dicci["videos"])):
         u=lt.getElement(dicci["videos"],m)
+    lista = []
+    for i in u:
+        for j in i:
+            if j == ct:
+                lista.append(j)
+                repe=0
+                pala = None
+                for c in lista:    
+                    if lista.count(c)>repe and c !=pala :
+        
+                        repe= lista.count(c)
+                        pala=c
+                for t in dicci['pais'][cat]:
 
-        if u["category_id"] == str(cat):
+                    if t['title']==pala:
+
+                         resp=(t["title"],t['channel_title'],t['country'],repe)
 
 
 
 
+    return resp
 
 
-
+        
 
 
 
