@@ -168,9 +168,37 @@ def paises(dicci,ppais:str,categgoria:str,cantidad:int):
 
     return final
   
+def TrendingVideo(dicci,pais):
 
+    for m in range(0,lt.size(dicci["videos"])):
+        rta=lt.getElement(dicci["videos"],m)
+    
 
-def TrendingVideo(dicci,pais:str):
+        if rta["country"] not in dicci["pais"]:
+            dicci["pais"][rta["country"]]=[]
+            dicci["pais"][rta["country"]].append(rta)
+
+        else:
+            dicci["pais"][rta["country"]].append(rta)
+
+    
+    lista = []
+    lista2=[]
+    hola = dicci["pais"][pais]
+
+    for i in hola:
+
+        lista.append(i["video_id"])
+        co = lista.count(i["video_id"])
+        lista2.append(co)
+    maxi = max(lista2)
+    tupla = (i["title"],i["channel_title"],i["country"],maxi)
+
+    return tupla
+       
+
+#opcion de la perra vela
+def TrendingVideo2(dicci,pais:str):
 
     rta=dicci["pais"][pais]
     mm=[]
@@ -204,6 +232,25 @@ def TrendingVideo(dicci,pais:str):
 
     return pt
 
+
+def TrendingCategoria(dicci,categoria):
+
+    for m in range(0,lt.size(dicci["videos"])):
+        resp=lt.getElement(dicci["videos"],m)
+
+    for m in range(0,lt.size(dicci["categorias"])):
+        rta=lt.getElement(dicci["categorias"],m)
+    
+
+        if rta["id"] not in dicci["categorias"]:
+            if rta["id"] == resp["category_id"]:
+                dicci["categorias"][rta["id"]]=[]
+                dicci["categorias"][rta["id"]].append(rta)
+
+        else:
+            dicci["categorias"][rta["id"]].append(rta)
+
+
 def requerimiento3(dicci,cat:str):
     categorias={"Film & Animation":1,"Autos & Vehicles":2,"Music":10,"Pets & Animals":15,"Sports":17,"Short Movies":18,"Travel & Events":19,"Gaming":20,"Videoblogging":21,"People & Blogs":22,"Comedyy":23,"Entertainment":24,"News & Politics":25,"Howto & Style":26,"Education":27,"Science & Technology":28,"Non-profits & Activism":29,"Movies":30,"Anime/Animation":31,"Classics":33,"Comedy":34,"Documentary":35,"Drama":36,"Family":37,"Foreign":38,"Horror":39,"Sci-Fi/Fantasy":40,"Thriller":41,"Shorts":42,"Shows":43,"Trailers":44}
     ct=categorias[cat]
@@ -214,11 +261,21 @@ def requerimiento3(dicci,cat:str):
         if u["category_id"] == str(cat):
 
 
+
+
+
+
+
+
+
+
+
+
+        
+    
         
 
-
-
-
+            
 
 
 
