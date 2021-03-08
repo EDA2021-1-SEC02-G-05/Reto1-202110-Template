@@ -232,7 +232,7 @@ def TrendingCategoria(dicci,cat:str):
     lista = []
     for i in u:
         for j in i:
-            if j == ct:
+            if i[j] == ct:
                 lista.append(j)
                 repe=0
                 pala = None
