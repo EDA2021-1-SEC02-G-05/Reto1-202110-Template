@@ -235,6 +235,7 @@ def requerimiento3(dicci,categorii:str):
             dt[tt["title"]][0]+=1
 
 
+    
 
     for i in dt:
         if dt[i][0] > numero:
@@ -337,6 +338,12 @@ def requerimiento4(dicci,tag:str,numero:int):
 
 
 
+
+        
+    
+        
+
+            
 
 
 

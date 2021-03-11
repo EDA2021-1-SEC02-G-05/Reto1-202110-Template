@@ -113,11 +113,8 @@ while True:
              for t  in i:
                  hol=str(i[t])
                  lista.append((hol[0:2],hol[4:]))
-        print(" Lista de categorias : "+ str(lista))   
+        print(" Lista de categorias : "+ str(lista))  
 
-
-
-   
     elif int(inputs[0]) == 2:   
         
         ordenamiento = str(input("Indique el tipo de ordenamiento que quiere utilizar(merge,quick,shell,selection,insertion): "))
@@ -179,9 +176,6 @@ while True:
         print(cachondo)
 
         
-
-
-
 
     else:
         sys.exit(0)
