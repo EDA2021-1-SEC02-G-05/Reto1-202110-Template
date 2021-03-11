@@ -27,6 +27,7 @@
 
 import config as cf
 import time
+from operator import itemgetter
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Sorting import selectionsort as sel
@@ -94,6 +95,19 @@ def cmpVideosByViews(video1, video2):
 
     return (float(video1['views']) > float(video2['views']))
 
+def cmpPaisesbyviews(ll1,ll2):
+
+    return(float(ll1["views"])>float(ll2["views"]))
+
+def cmpCategoriesByTrending(cat1, cat2):
+
+    return (float(cat1['title']) > float(cat2['title']))
+
+def cmpPaisesbylikes(lili1,lili2):
+
+    return(float(lili1["likes"])>float(lili2["likes"]))
+
+
 # Funciones de ordenamiento
 
 
@@ -122,10 +136,8 @@ def Ordenamientos(tipo,dicci,size):
 
    
   
-def paises(dicci,ppais:str,categgoria:str,cantidad:int):
-    categorias={"Film & Animation":1,"Autos & Vehicles":2,"Music":10,"Pets & Animals":15,"Sports":17,"Short Movies":18,"Travel & Events":19,"Gaming":20,"Videoblogging":21,"People & Blogs":22,"Comedyy":23,"Entertainment":24,"News & Politics":25,"Howto & Style":26,"Education":27,"Science & Technology":28,"Non-profits & Activism":29,"Movies":30,"Anime/Animation":31,"Classics":33,"Comedy":34,"Documentary":35,"Drama":36,"Family":37,"Foreign":38,"Horror":39,"Sci-Fi/Fantasy":40,"Thriller":41,"Shorts":42,"Shows":43,"Trailers":44}
-    ct=categorias[categgoria]
-    lol=[]
+def paises(dicci):
+    
 
     for m in range(0,lt.size(dicci["videos"])):
         rta=lt.getElement(dicci["videos"],m)
@@ -133,88 +145,194 @@ def paises(dicci,ppais:str,categgoria:str,cantidad:int):
     
     
         if rta["country"] not in dicci["pais"]:
-            dicci["pais"][rta["country"]]=[]
-            dicci["pais"][rta["country"]].append(rta)
+            dicci["pais"][rta["country"]]=lt.newList()
+            lt.addLast(dicci["pais"][rta["country"]],rta)
 
         else:
-            dicci["pais"][rta["country"]].append(rta)
+            lt.addLast(dicci["pais"][rta["country"]],rta)
 
-
-    for tt in range(0,len(dicci["pais"][ppais])):
-
-        if (dicci["pais"][ppais][tt]["category_id"])== str(ct):
-
-            lol.append(dicci["pais"][ppais][tt])
-
-    h=[]
-    for k in lol:
     
-         h.append(k["views"])
 
-    h=sorted(h,reverse=True)
-   
-
-
-    h=h[:cantidad]  
-
-    final=[]
-
-    for mi in lol:
     
-        for oo in h:
+    return dicci
+
+
+def requerimiento1(dicci,ppais:str,categorias:str,cantidad:int):
+    categori={"Film & Animation":1,"Autos & Vehicles":2,"Music":10,"Pets & Animals":15,"Sports":17,"Short Movies":18,"Travel & Events":19,"Gaming":20,"Videoblogging":21,"People & Blogs":22,"Comedyy":23,"Entertainment":24,"News & Politics":25,"Howto & Style":26,"Education":27,"Science & Technology":28,"Non-profits & Activism":29,"Movies":30,"Anime/Animation":31,"Classics":33,"Comedy":34,"Documentary":35,"Drama":36,"Family":37,"Foreign":38,"Horror":39,"Sci-Fi/Fantasy":40,"Thriller":41,"Shorts":42,"Shows":43,"Trailers":44}
+    ct=categori[categorias]
+    ll=lt.newList()
+    jlo=lt.newList()
+    
+    
+    for m in range(0,lt.size(dicci["pais"][ppais])):
+        rta=lt.getElement(dicci["pais"][ppais],m)
+
+
+        if rta["category_id"]==str(ct):
+
+            lt.addLast(ll,rta)
         
-             if mi["views"]==oo:
-                final.append((mi["trending_date"],mi["title"],mi["title"],mi["publish_time"],mi["views"],mi["likes"],mi["dislikes"]))
+    x = mg.sort(ll,cmpPaisesbyviews)
 
-    return final
+    for i in range(cantidad):
+        tt=lt.getElement(x,i)
+        
+        lt.addLast(jlo,(tt["trending_date"],tt["title"],tt["channel_title"],tt["publish_time"],tt["views"],tt["likes"],tt["dislikes"]))
+    
   
+    return jlo
 
-
+    
 def TrendingVideo(dicci,pais:str):
 
-    rta=dicci["pais"][pais]
-    mm=[]
-    for i in rta:
-    
-    
-         mm.append((i["title"]))
+    diccionario = {}
+
+    for i in range(1,lt.size(dicci["pais"][pais])): 
+        video = lt.getElement(dicci["pais"][pais],i)
+
+        if video["video_id"] in diccionario:
+            diccionario[video["video_id"]]+=1
+
+        else:
+            diccionario[video["video_id"]]=1
+
+    lista = []
+    for i in diccionario:
+        lista.append(diccionario[i])
+        maxi = max(lista)
+
+        tupla = (video["title"],video["channel_title"],video["country"],maxi)
 
 
-
-    f=0
-   
-    pi=None
-
-    for ss in mm:
-
-   
-    
-        if mm.count(ss)>f and ss !=pi :
-        
-            f= mm.count(ss)
-            pi=ss
-
-
-    for oo in dicci['pais'][pais]:
-
-        if oo['title']==pi:
-
-            pt=(oo["title"],oo['channel_title'],oo['country'],f)
-
-
-    return pt
-
-def requerimiento3(dicci,cat:str):
-    categorias={"Film & Animation":1,"Autos & Vehicles":2,"Music":10,"Pets & Animals":15,"Sports":17,"Short Movies":18,"Travel & Events":19,"Gaming":20,"Videoblogging":21,"People & Blogs":22,"Comedyy":23,"Entertainment":24,"News & Politics":25,"Howto & Style":26,"Education":27,"Science & Technology":28,"Non-profits & Activism":29,"Movies":30,"Anime/Animation":31,"Classics":33,"Comedy":34,"Documentary":35,"Drama":36,"Family":37,"Foreign":38,"Horror":39,"Sci-Fi/Fantasy":40,"Thriller":41,"Shorts":42,"Shows":43,"Trailers":44}
-    ct=categorias[cat]
-    
-    for m in range(0,lt.size(dicci["videos"])):
-        u=lt.getElement(dicci["videos"],m)
-
-        if u["category_id"] == str(cat):
-
+    return tupla
 
         
+
+
+def requerimiento3(dicci,categorii:str):
+    categori={"Film & Animation":1,"Autos & Vehicles":2,"Music":10,"Pets & Animals":15,"Sports":17,"Short Movies":18,"Travel & Events":19,"Gaming":20,"Videoblogging":21,"People & Blogs":22,"Comedyy":23,"Entertainment":24,"News & Politics":25,"Howto & Style":26,"Education":27,"Science & Technology":28,"Non-profits & Activism":29,"Movies":30,"Anime/Animation":31,"Classics":33,"Comedy":34,"Documentary":35,"Drama":36,"Family":37,"Foreign":38,"Horror":39,"Sci-Fi/Fantasy":40,"Thriller":41,"Shorts":42,"Shows":43,"Trailers":44}
+    ct=categori[categorii]
+    pt= lt.newList()
+    dt={}
+    numero=0
+    
+    for i in range(0,lt.size(dicci["videos"])):
+        rta=lt.getElement(dicci["videos"],i) 
+
+
+        if rta["category_id"]==str(ct):
+
+            lt.addLast(pt,rta)
+        
+    for p in range(0,lt.size(pt)):
+
+        tt=lt.getElement(pt,p)
+
+        if tt["title"]not in dt:
+
+            dt[tt["title"]]=[1,(tt)]
+        else:
+            dt[tt["title"]][0]+=1
+
+
+
+    for i in dt:
+        if dt[i][0] > numero:
+            numero= dt[i][0]
+            tt=(("El titulo del video : "+str(dt[i][1]["title"])," El nombre del canal: "+str(dt[i][1]["channel_title"]),"el category id: "+str(dt[i][1]["category_id"]),"los dias que ha sido trending: "+str(dt[i][0])))
+            
+       
+
+   
+    return tt
+
+
+
+
+def organizartags(dicci):
+    pala=""
+    lista=[]
+    ll=[]
+
+
+    for i in range(0,lt.size(dicci["videos"])):
+
+        rta=lt.getElement(dicci["videos"],i) 
+
+        for mm in rta["tags"]:
+
+            if mm != "|"and  mm!='"':
+
+                pala+=mm
+            else:
+                lista.append(pala)
+                pala=""
+
+        for pp in lista:
+
+             if pp !='':
+
+        
+                 ll.append(pp)
+
+
+        
+        rta["tags"]=ll
+        ll=[]
+
+      
+    return dicci
+
+
+def requerimiento4(dicci,tag:str,numero:int):
+    lili=lt.newList()
+    lastima=[]
+
+    for i in range(0,lt.size(dicci["videos"])):
+
+        rta=lt.getElement(dicci["videos"],i) 
+
+        if tag in rta["tags"]:
+
+            lt.addLast(lili,rta)
+
+    x = mg.sort(lili,cmpPaisesbylikes)
+
+    for i in range(numero):
+        tt=lt.getElement(x,i)
+
+        lastima.append(("titulo: "+str(tt["title"])," Nombre del canal: "+str(tt["channel_title"])," Fecha de publicacion: "+str(tt["publish_time"])," Visitas: "+str(tt["views"])," Me gustas"+str(tt["likes"]),"No me gustas: "+str(tt["dislikes"])))
+
+
+
+    return lastima
+        
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

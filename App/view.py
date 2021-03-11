@@ -42,8 +42,12 @@ def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
     print("2- Indicar el tipo de ordenamiento")
-    print("3- Consultar los videos con mas views y  son tendencia")
-    print("4- Consultar los trending videos por pais")
+    print("3- Organice los videos por paises")
+    print("4- Consultar los videos mas vistas  por pais")
+    print("5- Consultar los videos con mas trending")
+    print("6- Consultar el video mas trending por categoria")
+    print("7- Organizar los videos con sus tags")
+    print("8- Consultar los videos por un tag")
     print("0- Salir")
 
 def initdicci(lista:str):
@@ -62,15 +66,28 @@ def loadOrdenamientos(tipo,dicci,size):
 
     return controller.loadOrdenamientos(tipo,dicci,size)
 
-def loadpaises(dicci,ppais,categgoria,cantidad):
+def loadpaises(dicci):
 
-    return controller.loadppaises(dicci,ppais,categgoria,cantidad)
+    return controller.loadppaises(dicci)
 
 
 
 def loadtrendingVideo(dicci,pais):
 
     return controller.loadTrendingVideo(dicci,pais)
+
+def loaddrequerimiento1(dicci,ppais,categorias,cantidad):
+
+    return controller.loadrequerimineto1(dicci,ppais,categorias,cantidad)
+
+def loaddrequerimiento3(dicci,categorii):
+    return controller.loadrequerimiento3(dicci,categorii)
+
+def loaddorganizartags(dicci):
+    return controller.loadorganizartags(dicci)
+
+def loaddrequerimiento4(dicci,tag,numero):
+    return controller.loadrequerimiento4(dicci,tag,numero)
 
 
 dicci = None
@@ -110,19 +127,59 @@ while True:
 
     elif int(inputs[0]) == 3: 
 
-        ppais=str(input("Ingrese el nombre del pais deseado: "))
-        categgoria=str(input("Ingrese el nombre de la categoria deseada :"))
-        cantidad=int(input("Ingrese la cantidad deseada de videos: "))
+        loadpaises(dicci)
+        print(" Se han organizado los videos por sus paises correspondientes ")
 
-        rt=loadpaises(dicci,ppais,categgoria,cantidad)
 
-        print(rt)
 
     elif  int(inputs[0]) == 4:
-        pais=str(input("Ingrese el nombre del pais deseado a buscar: "))
-        f=loadtrendingVideo(dicci,pais)
 
-        print(f)
+        ppais=str(input("Ingrese el nombre del pais interesado:  "))
+        categorias=str(input("Ingrese el nombre de la categoria deseada: "))
+        cantidad=int(input("Ingrese la cantidad de videos deseada: "))
+
+    
+
+        jes= loaddrequerimiento1(dicci,ppais,categorias,cantidad)
+
+        print(jes)
+
+    elif  int(inputs[0]) == 5:
+        ppaais=str(input("Ingrese el pais a buscar: "))
+
+
+        te=loadtrendingVideo(dicci,ppaais)
+
+        print(te)
+
+    elif  int(inputs[0]) == 6:
+        ctt=str(input("Ingrese la categoria deseada: "))
+
+        print("El video de la mas trending en la categoria "+str(ctt)+":")
+
+
+        jm=loaddrequerimiento3(dicci,ctt)
+
+        print(jm)
+
+
+    elif  int(inputs[0]) == 7:
+
+        tutu=loaddorganizartags(dicci)
+
+        print("Se organizaron los videos con sus respectivos Tags")
+
+    elif int(inputs[0]) == 8:
+
+        tag=str(input("Ingrese el nombre del Tag de su interes: "))
+        numero=int(input("Ingrese la cantidad de videos que desea ver: "))
+
+        cachondo=loaddrequerimiento4(dicci,tag,numero)
+
+        print(cachondo)
+
+        
+
 
 
 

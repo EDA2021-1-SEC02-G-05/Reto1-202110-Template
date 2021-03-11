@@ -54,7 +54,7 @@ def loadVideos(dicci):
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    videofile = cf.data_dir + 'videos-10pct.csv'
+    videofile = cf.data_dir + 'videos-small.csv'
     input_file = csv.DictReader(open(videofile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(dicci, video)
@@ -78,11 +78,19 @@ def loadOrdenamientos(tipo,dicci,size):
 
 # Funciones de consulta sobre el catálogo
 
-def loadppaises(dicci,ppais,categgoria,cantidad):
+def loadppaises(dicci):
 
-    rttaa = model.paises(dicci,ppais,categgoria,cantidad)
+    rttaa = model.paises(dicci)
 
     return rttaa
+
+
+
+def loadrequerimineto1(dicci,ppais,categorias,cantidad):
+
+    jes=model.requerimiento1(dicci,ppais,categorias,cantidad)
+
+    return jes 
 
 def loadTrendingVideo(dicci,pais):
 
@@ -90,3 +98,20 @@ def loadTrendingVideo(dicci,pais):
 
     return ta
 
+
+def loadrequerimiento3(dicci,categorii):
+
+    uu=model.requerimiento3(dicci,categorii)
+
+    return uu
+def loadorganizartags(dicci):
+
+    opo=model.organizartags(dicci)
+
+    return opo
+
+def loadrequerimiento4(dicci,tag,numero):
+
+    pomona=model.requerimiento4(dicci,tag,numero)
+
+    return pomona
