@@ -139,6 +139,11 @@ while True:
 
         jes= loaddrequerimiento1(dicci,ppais,categorias,cantidad)
 
+        
+
+        print("Tiempo [ms]: ", f"{jes[1]:.3f}", " || ",
+        "Memoria [kB]: ", f"{jes[2]:.3f}")
+
         print(jes)
 
     elif  int(inputs[0]) == 5:
@@ -149,6 +154,9 @@ while True:
 
         print(te)
 
+        print("Tiempo [ms]: ", f"{te[1]:.3f}", " || ",
+        "Memoria [kB]: ", f"{te[2]:.3f}")
+
     elif  int(inputs[0]) == 6:
         ctt=str(input("Ingrese la categoria deseada: "))
 
@@ -156,6 +164,9 @@ while True:
 
 
         jm=loaddrequerimiento3(dicci,ctt)
+
+        print("Tiempo [ms]: ", f"{jm[1]:.3f}", " || ",
+        "Memoria [kB]: ", f"{jm[2]:.3f}")
 
         print(jm)
 
@@ -173,6 +184,8 @@ while True:
 
         cachondo=loaddrequerimiento4(dicci,tag,numero)
 
+        print("Tiempo [ms]: ", f"{cachondo[1]:.3f}", " || ",
+        "Memoria [kB]: ", f"{cachondo[2]:.3f}")
         print(cachondo)
 
         
